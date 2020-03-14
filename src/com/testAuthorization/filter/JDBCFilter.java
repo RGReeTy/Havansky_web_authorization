@@ -80,9 +80,7 @@ public class JDBCFilter implements Filter {
         // Избегать открытия Connection для обычных запросов.
         // (Например image, css, javascript,... )
         if (this.needJDBC(req)) {
-
             System.out.println("Open Connection for: " + req.getServletPath());
-
             Connection conn = null;
             try {
                 // Создать объект Connection подключенный к database.
