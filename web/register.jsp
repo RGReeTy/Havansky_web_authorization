@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Java MVC Login & Register Script Using MySql</title>
+    <title>Java Login & Register </title>
     <script language="javascript">
         function validate() {
             var first_name = /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z
@@ -64,7 +64,7 @@
 
         <input type="submit" name="btn_register" value="Register">
 
-        <h3>You have a account? <a href="index.jsp">Login</a></h3>
+        <h3>You have an account? <a href="index.jsp">Login</a></h3>
 
     </form>
 
