@@ -9,9 +9,9 @@ import java.sql.PreparedStatement;
 public class RegisterDao {
 
     String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/user";
+    String url = "jdbc:mysql://localhost:3306/user_test?useUnicode=true&serverTimezone=UTC";
     String uname = "root";
-    String pass = "";
+    String pass = "0000";
 
     public String authorizeRegister(RegisterBean registerBean) {
 
@@ -26,11 +26,11 @@ public class RegisterDao {
 
             PreparedStatement pstmt = null;
 
-            pstmt = con.prepareStatement("insert into user(firstname,lastname,username,password) values(?,?,?,?)");
-            pstmt.setString(1, firstname);
-            pstmt.setString(2, lastname);
-            pstmt.setString(3, username);
-            pstmt.setString(4, password);
+            pstmt = con.prepareStatement("insert into user_test.user(username,password, firstname,lastname) values(?,?,?,?)");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            pstmt.setString(3, firstname);
+            pstmt.setString(4, lastname);
             pstmt.executeUpdate();
 
             pstmt.close();

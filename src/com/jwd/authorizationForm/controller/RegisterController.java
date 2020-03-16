@@ -15,10 +15,10 @@ public class RegisterController extends HttpServlet {
 
         //check button click event not null from register.jsp page button
         if (request.getParameter("btn_register") != null) {
-            String firstname = request.getParameter("txt_firstname");
-            String lastname = request.getParameter("txt_lastname");
             String username = request.getParameter("txt_username");  //get all textbox name from register.jsp page
             String password = request.getParameter("txt_password");
+            String firstname = request.getParameter("txt_firstname");
+            String lastname = request.getParameter("txt_lastname");
 
             //this class contain  seeting up all received values from register.jsp page to setter and getter method for application require effectively
             RegisterBean registerBean = new RegisterBean();
@@ -34,11 +34,11 @@ public class RegisterController extends HttpServlet {
 
             //check calling authorizeRegister() function receive "SUCCESS REGISTER" string message after redirect to index.jsp page
             if (registerValidate.equals("SUCCESS REGISTER")) {
-                request.setAttribute("RegisterSuccessMsg", registerValidate); //apply register successfully message "RegiseterSuccessMsg"
+                request.setAttribute("RegisterSuccessMsg", registerValidate); //apply register successfully message "RegisterSuccessMsg"
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp"); //redirect to index.jsp page
                 rd.forward(request, response);
             } else {
-                request.setAttribute("RegisterErrorMsg", registerValidate); // apply register error message "RegiseterErrorMsg"
+                request.setAttribute("RegisterErrorMsg", registerValidate); // apply register error message "RegisterErrorMsg"
                 RequestDispatcher rd = request.getRequestDispatcher("register.jsp"); //show error same page register.jsp page
                 rd.include(request, response);
             }

@@ -12,10 +12,10 @@
     <title>Java Login & Register </title>
     <script language="javascript">
         function validate() {
-            var first_name = /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z
-            var last_name = /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z
+            var first_name = /^[a-zа-яA-ZА-Я]+$/; //pattern allowed alphabet a-z or A-Z
+            var last_name = /^[a-zа-яA-ZА-Я]+$/; //pattern allowed alphabet a-z or A-Z
             var user_name = /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z
-            var password_valid = /^[A-Z a-z 0-9]{6,12}$/; //pattern password allowed A to Z, a to z, 0-9 and 6 to 12 range
+            var password_valid = /^[A-Z a-z 0-9]{4,12}$/; //pattern password allowed A to Z, a to z, 0-9 and 6 to 12 range
 
             var fname = document.getElementById("fname"); //textbox id fname
             var lname = document.getElementById("lname"); //textbox id lname
@@ -41,7 +41,7 @@
                 return false;
             }
             if (!password_valid.test(password.value) || password.value == '') {//apply if condition using test() method match the parameter for pattern passoword allow 6 to 12 range
-                alert("Password Must Be 6 to 12 character"); //alert message
+                alert("Password Must Be 4 to 12 character"); //alert message
                 password.focus();
                 password.style.background = '#f08080'; //set textbox color
                 return false;

@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 public class LoginDao {
 
     String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/user";
+    String url = "jdbc:mysql://localhost:3306/user_test?useUnicode=true&serverTimezone=UTC";
     String uname = "root";
-    String pass = "";
+    String pass = "0000";
 
 
     public String authorizeLogin(LoginBean loginBean) {
@@ -28,7 +28,7 @@ public class LoginDao {
 
             PreparedStatement pstmt = null;
 
-            pstmt = con.prepareStatement("select * from user where username=? and password=?");
+            pstmt = con.prepareStatement("select * from user_test.user where username=? and password=?");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
