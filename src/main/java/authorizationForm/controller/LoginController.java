@@ -1,7 +1,7 @@
-package com.jwd.authorizationForm.controller;
+package main.java.authorizationForm.controller;
 
-import com.jwd.authorizationForm.bean.LoginBean;
-import com.jwd.authorizationForm.dao.LoginDao;
+import main.java.authorizationForm.bean.User;
+import main.java.authorizationForm.dao.LoginDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ public class LoginController extends HttpServlet {
             String username = request.getParameter("txt_username"); //get textbox name "txt_username"
             String password = request.getParameter("txt_password"); //get textbox name "txt_password"
 
-            LoginBean loginBean = new LoginBean(); //this class contain seeting up all received values from index.jsp page to setter and getter method for application require effectively
+            User loginBean = new User(); //this class contain seeting up all received values from index.jsp page to setter and getter method for application require effectively
 
             loginBean.setUsername(username); //set username through loginBean object
             loginBean.setPassword(password); //set password through loginBean object

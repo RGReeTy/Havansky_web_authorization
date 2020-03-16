@@ -1,6 +1,6 @@
-package com.jwd.authorizationForm.dao;
+package main.java.authorizationForm.dao;
 
-import com.jwd.authorizationForm.bean.RegisterBean;
+import main.java.authorizationForm.bean.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,16 +9,16 @@ import java.sql.PreparedStatement;
 public class RegisterDao {
 
     String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/user_test?useUnicode=true&serverTimezone=UTC";
+    String url = "jdbc:mysql://localhost:3306/user_test?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
     String uname = "root";
     String pass = "0000";
 
-    public String authorizeRegister(RegisterBean registerBean) {
+    public String authorizeRegister(User user) {
 
-        String firstname = registerBean.getFirstname();
-        String lastname = registerBean.getLastname();
-        String username = registerBean.getUsername();
-        String password = registerBean.getPassword();
+        String firstname = user.getFirstname();
+        String lastname = user.getLastname();
+        String username = user.getUsername();
+        String password = user.getPassword();
 
         try {
             Class.forName(driver);

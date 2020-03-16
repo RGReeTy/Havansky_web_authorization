@@ -1,6 +1,6 @@
-package com.jwd.authorizationForm.dao;
+package main.java.authorizationForm.dao;
 
-import com.jwd.authorizationForm.bean.LoginBean;
+import main.java.authorizationForm.bean.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,12 +10,12 @@ import java.sql.ResultSet;
 public class LoginDao {
 
     String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/user_test?useUnicode=true&serverTimezone=UTC";
+    String url = "jdbc:mysql://localhost:3306/user_test?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
     String uname = "root";
     String pass = "0000";
 
 
-    public String authorizeLogin(LoginBean loginBean) {
+    public String authorizeLogin(User loginBean) {
         String username = loginBean.getUsername();
         String password = loginBean.getPassword();
 

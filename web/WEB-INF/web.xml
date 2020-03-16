@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>RegisterController</servlet-name>
-        <servlet-class>com.jwd.authorizationForm.controller.RegisterController</servlet-class>
+        <servlet-class>main.java.authorizationForm.controller.RegisterController</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>com.jwd.authorizationForm.controller.LoginController</servlet-class>
+        <servlet-class>main.java.authorizationForm.controller.LoginController</servlet-class>
     </servlet>
 
     <servlet-mapping>
