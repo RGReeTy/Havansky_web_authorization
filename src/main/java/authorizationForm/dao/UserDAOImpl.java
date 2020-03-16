@@ -12,57 +12,112 @@ import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO {
 
-    private final static String INSERT = "INSERT INTO task3.users (login, password) VALUES(?,?)";
-    private final static String SELECT = "SELECT login, password FROM task3.users";
+    private final static String LOGIN = "SELECT * FROM user_test.user WHERE username=? AND password=?";
+    private final static String INSERT = "INSERT INTO user_test.user(username,password, firstname,lastname) VALUES(?,?,?,?)";
 
-    //@Override
-    public boolean addNewUser(User user) throws DAOException {
+    @Override
+    public String addNewUser(User user) throws DAOException {
+
+        String firstname = user.getFirstname();
+        String lastname = user.getLastname();
+        String username = user.getUsername();
+        String password = user.getPassword();
 
         ConnectionPool pool = null;
-        Connection connection = null;
-        PreparedStatement ps = null;
-        boolean flag = false;
+        Connection con = null;
+        PreparedStatement pstmt = null;
 
         try {
             pool = ConnectionPool.getInstance();
             pool.poolInitialization();
 
-            connection = pool.takeConnection();
-            ps = connection.prepareStatement(INSERT);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPassword());
-            ps.executeUpdate();
-            flag = true;
+            con = pool.takeConnection();
+            pstmt = con.prepareStatement(INSERT);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            pstmt.setString(3, firstname);
+            pstmt.setString(4, lastname);
+            pstmt.executeUpdate();
 
+            return "SUCCESS REGISTER";
+
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("Exception during pool initializing!", e);
+        } catch (SQLException e) {
+            throw new DAOException("Exception during inserting operation", e);
+        } finally {
+            if (pstmt != null) {
+                closeStatement(pstmt);
+            }
+            if (con != null) {
+                closeConnection(con);
+            }
+            if (pool != null) {
+                closePool(pool);
+            }
+        }
+
+        //  return "FAIL REGISTER";
+    }
+
+    @Override
+    public String authorizeLogin(User loginUser) throws DAOException {
+
+        String username = loginUser.getUsername();
+        String password = loginUser.getPassword();
+        String dbusername = "";
+        String dbpassword = "";
+        ConnectionPool pool = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            pool = ConnectionPool.getInstance();
+            pool.poolInitialization();
+
+            con = pool.takeConnection();
+            pstmt = con.prepareStatement(LOGIN);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            pstmt.executeUpdate();
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                dbusername = rs.getString("username");
+                dbpassword = rs.getString("password");
+
+                if (username.equals(dbusername) && password.equals(dbpassword)) {
+                    return "SUCCESS LOGIN";
+                }
+            }
         } catch (ConnectionPoolException e) {
             throw new DAOException("Exception during pool initializing!");
         } catch (SQLException e) {
             throw new DAOException("Exception during inserting operation");
         } finally {
-            if (ps != null)
-                closeStatement(ps);
-            if (connection != null)
-                closeConnection(connection);
+            if (pstmt != null)
+                closeStatement(pstmt);
+            if (con != null)
+                closeConnection(con);
             if (pool != null)
                 closePool(pool);
         }
-
-        return flag;
+        return "WRONG USERNAME AND PASSWORD";
     }
 
     //@Override
     public ArrayList<String> getUserInfo(String info) throws DAOException {
 
         ConnectionPool pool = null;
-        Connection connection = null;
+        Connection con = null;
         PreparedStatement ps = null;
         ArrayList<String> users = new ArrayList<>();
 
         try {
             pool = ConnectionPool.getInstance();
             pool.poolInitialization();
-            connection = pool.takeConnection();
-            ps = connection.prepareStatement(SELECT);
+            con = pool.takeConnection();
+            ps = con.prepareStatement(LOGIN);
 
             ResultSet rs = ps.executeQuery();
 
@@ -77,14 +132,13 @@ public class UserDAOImpl implements UserDAO {
         } finally {
             if (ps != null)
                 closeStatement(ps);
-            if (connection != null)
-                closeConnection(connection);
+            if (con != null)
+                closeConnection(con);
             if (pool != null)
                 closePool(pool);
         }
         return users;
     }
-
 
 
     private static void closeStatement(PreparedStatement ps) throws DAOException {
