@@ -1,7 +1,9 @@
 package main.java.authorizationForm.controller;
 
 import main.java.authorizationForm.bean.User;
-import main.java.authorizationForm.dao.RegisterDao;
+import main.java.authorizationForm.service.ServiceException;
+import main.java.authorizationForm.service.ServiceFactory;
+import main.java.authorizationForm.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,9 +29,15 @@ public class RegisterController extends HttpServlet {
             user.setUsername(username);  //set the all value through registerBean object
             user.setPassword(password);
 
-            RegisterDao registerdao = new RegisterDao(); //this class contain main logic to perform function calling and database operation
+            UserService service = ServiceFactory.getInstance().getUserDAO();
 
-            String registerValidate = registerdao.authorizeRegister(user); //send registerBean object values into authorizeRegister() function in RegisterDao class
+            //send loginBean object values into authorizeLogin() function in LoginDao class
+            String registerValidate = "RegisterErrorMsg";
+            try {
+                registerValidate = service.registration(user);
+            } catch (ServiceException e) {
+                e.printStackTrace();
+            }
 
             //check calling authorizeRegister() function receive "SUCCESS REGISTER" string message after redirect to index.jsp page
             if (registerValidate.equals("SUCCESS REGISTER")) {

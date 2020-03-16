@@ -1,7 +1,9 @@
 package main.java.authorizationForm.controller;
 
 import main.java.authorizationForm.bean.User;
-import main.java.authorizationForm.dao.LoginDao;
+import main.java.authorizationForm.service.ServiceException;
+import main.java.authorizationForm.service.ServiceFactory;
+import main.java.authorizationForm.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,10 +26,15 @@ public class LoginController extends HttpServlet {
             loginBean.setUsername(username); //set username through loginBean object
             loginBean.setPassword(password); //set password through loginBean object
 
-            LoginDao loginDao = new LoginDao(); //this class contain main logic to perform function calling and database operation
+            UserService service = ServiceFactory.getInstance().getUserDAO();
 
             //send loginBean object values into authorizeLogin() function in LoginDao class
-            String authorize = loginDao.authorizeLogin(loginBean);
+            String authorize = "WrongLoginMsg";
+            try {
+                authorize = service.singIn(loginBean);
+            } catch (ServiceException e) {
+                e.printStackTrace();
+            }
 
             //check calling authorizeLogin() function receive string "SUCCESS LOGIN" message after continue process
             if (authorize.equals("SUCCESS LOGIN")) {
