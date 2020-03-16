@@ -24,6 +24,12 @@ public class ConnectionPool {
         this.password = resourceManager.getValue(DBConnectionParameter.PASSWORD.getKey());
         this.url = resourceManager.getValue(DBConnectionParameter.URL.getKey());
         this.poolSize = Integer.parseInt(resourceManager.getValue(DBConnectionParameter.POOL_SIZE.getKey()));
+
+//        this.driver = "com.mysql.jdbc.Driver";
+//        this.user = "root";
+//        this.password = "0000";
+//        this.url = "jdbc:mysql://localhost:3306/user_test?useUnicode=true&serverTimezone=UTC";
+//        this.poolSize = 10;
     }
 
     public static ConnectionPool getInstance() {

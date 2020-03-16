@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO {
 
-    private final static String LOGIN = "SELECT * FROM user_test.user WHERE username=? AND password=?";
+    private final static String LOGIN = "SELECT * FROM user_test.user WHERE username = ? AND password = ?";
     private final static String INSERT = "INSERT INTO user_test.user(username,password, firstname,lastname) VALUES(?,?,?,?)";
 
     @Override
@@ -79,7 +79,6 @@ public class UserDAOImpl implements UserDAO {
             pstmt = con.prepareStatement(LOGIN);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            pstmt.executeUpdate();
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -93,7 +92,7 @@ public class UserDAOImpl implements UserDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("Exception during pool initializing!");
         } catch (SQLException e) {
-            throw new DAOException("Exception during inserting operation");
+            throw new DAOException("Exception during sign in operation!");
         } finally {
             if (pstmt != null)
                 closeStatement(pstmt);

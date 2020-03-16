@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // TODO: 16.03.2020 check all exceptions 
         //check button click event not null from login.jsp page button
         if (request.getParameter("btn_login") != null) {
             String username = request.getParameter("txt_username"); //get textbox name "txt_username"

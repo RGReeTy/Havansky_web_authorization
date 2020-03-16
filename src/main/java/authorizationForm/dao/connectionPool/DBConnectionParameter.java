@@ -1,11 +1,12 @@
 package main.java.authorizationForm.dao.connectionPool;
 
 public enum DBConnectionParameter {
-    DRIVER("db.driver"),
-    URL("db.url"),
-    USER("db.user"),
-    PASSWORD("db.password"),
-    POOL_SIZE("db.pool_size");
+
+    DRIVER("database.driver"),
+    URL("database.url"),
+    USER("database.user"),
+    PASSWORD("database.password"),
+    POOL_SIZE("database.pool_size");
 
     private String key;
 
