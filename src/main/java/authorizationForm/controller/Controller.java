@@ -5,7 +5,6 @@ import main.java.authorizationForm.controller.command.manager.ConfigurationManag
 import main.java.authorizationForm.controller.command.manager.MessageManager;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

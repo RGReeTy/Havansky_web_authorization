@@ -11,6 +11,6 @@
         ? (String) request.getAttribute("errorMessage")
         : "unknown error"</jsp:expression>
     <hr/>
-    <a href="controller">Return to login page</a>
+    <a href="jsp/index.jsp">Return to login page</a>
     </body>
     </html>

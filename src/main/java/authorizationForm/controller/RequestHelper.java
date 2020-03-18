@@ -3,6 +3,7 @@ package main.java.authorizationForm.controller;
 import main.java.authorizationForm.controller.command.Command;
 import main.java.authorizationForm.controller.command.LoginCommand;
 import main.java.authorizationForm.controller.command.NoCommand;
+import main.java.authorizationForm.controller.command.RegisterCommand;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class RequestHelper {
 
     private RequestHelper() {
         commands.put("login", new LoginCommand());
+        commands.put("register", new RegisterCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {

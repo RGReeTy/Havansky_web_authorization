@@ -55,8 +55,8 @@
 
     <h2>Register</h2>
 
-    <form method="post" action="RegisterController" onsubmit="return validate();">
-
+    <form method="post" action="controller" onsubmit="return validate();">
+        <input type="hidden" name="command" value="register"/>
         Firstname <input type="text" name="txt_firstname" id="fname"></br></br>
         Lastname <input type="text" name="txt_lastname" id="lname"></br></br>
         Username <input type="text" name="txt_username" id="uname"></br></br>
@@ -64,17 +64,10 @@
 
         <input type="submit" name="btn_register" value="Register">
 
-        <h3>You have an account? <a href="../index.jsp">Login</a></h3>
+        <h3>You have an account? <a href="/jsp/index.jsp">Login</a></h3>
 
     </form>
 
-    <h3 style="color:red">
-        <%
-            if (request.getAttribute("RegisterErrorMsg") != null) {
-                out.println(request.getAttribute("RegisterErrorMsg")); //get register fail error message from "RegisterController"
-            }
-        %>
-    </h3>
 
 </div>
 </body>
