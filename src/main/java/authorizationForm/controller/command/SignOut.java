@@ -1,0 +1,17 @@
+package main.java.authorizationForm.controller.command;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class SignOut implements Command {
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+
+        return "Success";
+    }
+}
