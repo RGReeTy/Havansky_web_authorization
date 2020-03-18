@@ -14,14 +14,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginController extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: 16.03.2020 check all exceptions 
         //check button click event not null from login.jsp page button
+
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html");
+
         if (request.getParameter("btn_login") != null) {
             String username = request.getParameter("txt_username"); //get textbox name "txt_username"
             String password = request.getParameter("txt_password"); //get textbox name "txt_password"
 
-            User loginBean = new User(); //this class contain seeting up all received values from index.jsp page to setter and getter method for application require effectively
+            User loginBean = new User();
 
             loginBean.setUsername(username); //set username through loginBean object
             loginBean.setPassword(password); //set password through loginBean object

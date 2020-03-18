@@ -104,41 +104,6 @@ public class UserDAOImpl implements UserDAO {
         return "WRONG USERNAME AND PASSWORD";
     }
 
-    //@Override
-    public ArrayList<String> getUserInfo(String info) throws DAOException {
-
-        ConnectionPool pool = null;
-        Connection con = null;
-        PreparedStatement ps = null;
-        ArrayList<String> users = new ArrayList<>();
-
-        try {
-            pool = ConnectionPool.getInstance();
-            pool.poolInitialization();
-            con = pool.takeConnection();
-            ps = con.prepareStatement(LOGIN);
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                users.add(rs.getString(info));
-            }
-
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Exception during pool initializing!");
-        } catch (SQLException e) {
-            throw new DAOException("Exception during select operation!");
-        } finally {
-            if (ps != null)
-                closeStatement(ps);
-            if (con != null)
-                closeConnection(con);
-            if (pool != null)
-                closePool(pool);
-        }
-        return users;
-    }
-
 
     private static void closeStatement(PreparedStatement ps) throws DAOException {
         try {
