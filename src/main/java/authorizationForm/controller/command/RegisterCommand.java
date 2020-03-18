@@ -38,8 +38,6 @@ public class RegisterCommand implements Command {
 
         UserService service = ServiceFactory.getInstance().getUserDAO();
 
-        if (request.getParameter("btn_login") != null) {
-
             String registerValidate = "Register Error";
             try {
                 registerValidate = service.registration(user);
@@ -54,7 +52,6 @@ public class RegisterCommand implements Command {
                 request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.REGISTER_ERROR_MESSAGE));
                 page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
             }
-        }
         return page;
     }
 }

@@ -1,9 +1,6 @@
 package main.java.authorizationForm.controller;
 
-import main.java.authorizationForm.controller.command.Command;
-import main.java.authorizationForm.controller.command.LoginCommand;
-import main.java.authorizationForm.controller.command.NoCommand;
-import main.java.authorizationForm.controller.command.RegisterCommand;
+import main.java.authorizationForm.controller.command.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -12,14 +9,15 @@ public class RequestHelper {
 
     private static RequestHelper instance = null;
 
-    HashMap<String, Command> commands = new HashMap<String, Command>();
+    private HashMap<String, Command> commands = new HashMap<String, Command>();
 
     private RequestHelper() {
         commands.put("login", new LoginCommand());
-        commands.put("register", new RegisterCommand());
+        commands.put("registration", new RegisterCommand());
+        commands.put("signout", new SignOut());
     }
 
-    public Command getCommand(HttpServletRequest request) {
+    Command getCommand(HttpServletRequest request) {
         String action = request.getParameter("command");
         Command command = commands.get(action);
         if (command == null) {

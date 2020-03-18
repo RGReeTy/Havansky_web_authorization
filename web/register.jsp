@@ -55,12 +55,12 @@
 
     <h2>Register</h2>
 
-    <form method="post" action="controller" onsubmit="return validate();">
-        <input type="hidden" name="command" value="register"/>
-        Firstname <input type="text" name="txt_firstname" id="fname"></br></br>
-        Lastname <input type="text" name="txt_lastname" id="lname"></br></br>
-        Username <input type="text" name="txt_username" id="uname"></br></br>
-        Password <input type="password" name="txt_password" id="password"></br></br>
+    <form  action="controller" method="post" accept-charset="utf-8" onsubmit="return validate();">
+        <input type="hidden" name="command" value="registration" />
+        Firstname <input type="text" name="txt_firstname" value="" id="fname"></br></br>
+        Lastname <input type="text" name="txt_lastname" value="" id="lname"></br></br>
+        Username <input type="text" name="txt_username" value="" id="uname"></br></br>
+        Password <input type="password" name="txt_password" value="" id="password"></br></br>
 
         <input type="submit" name="btn_register" value="Register">
 
