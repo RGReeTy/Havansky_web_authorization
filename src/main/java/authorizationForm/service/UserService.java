@@ -7,4 +7,6 @@ public interface UserService {
     String singIn(User user) throws ServiceException;
 
     String registration(User user) throws ServiceException;
+
+    boolean checkLogin(User loginBean);
 }

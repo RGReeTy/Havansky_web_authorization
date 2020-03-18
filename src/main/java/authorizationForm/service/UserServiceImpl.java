@@ -33,4 +33,15 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException("Exception during registration!");
         }
     }
+
+    @Override
+    public boolean checkLogin(User loginBean) {
+        String authorize = "WrongLoginMsg";
+        try {
+            authorize = singIn(loginBean);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+        return authorize.equals("SUCCESS LOGIN");
+    }
 }
