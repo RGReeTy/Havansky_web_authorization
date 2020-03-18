@@ -42,7 +42,7 @@
 
         <input type="submit" name="btn_login" value="Login">
 
-        <h3>Your don't have an account? <a href="jsp/register.jsp">Register</a></h3>
+        <h3>Your don't have an account? <a href="register.jsp">Register</a></h3>
 
     </form>
 
