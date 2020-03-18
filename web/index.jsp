@@ -11,8 +11,8 @@
     <title>Java Login & Register</title>
     <script language="javascript">
         function validate() {
-            var username = document.LoginForm.txt_username; //get form name "LoginForm" and textbox name "txt_username" store in variable username
-            var password = document.LoginForm.txt_password; //get form name "LoginForm" and textbox name "txt_password" store in variable password
+            var username = document.LoginForm.text; //get form name "LoginForm" and textbox name "txt_username" store in variable username
+            var password = document.LoginForm.password; //get form name "LoginForm" and textbox name "txt_password" store in variable password
 
             if (username.value == null || username.value == "") {//check username textbox not blank
                 window.alert("please enter username !"); //alert message
@@ -35,14 +35,14 @@
 
     <h2>Login</h2>
 
-    <form method="post" action="LoginController" name="LoginForm" onsubmit="return validate();">
-
-        Username :<input type="text" name="txt_username">
-        Password :<input type="password" name="txt_password">
+    <form method="post" action="Controller" name="LoginForm" onsubmit="return validate();">
+        <input type="hidden" name="command" value="login"/>
+        Username :<input type="text" name="login" value="">
+        Password :<input type="password" name="password" value="">
 
         <input type="submit" name="btn_login" value="Login">
 
-        <h3>Your don't have an account? <a href="register.jsp">Register</a></h3>
+        <h3>Your don't have an account? <a href="jsp/register.jsp">Register</a></h3>
 
     </form>
 
