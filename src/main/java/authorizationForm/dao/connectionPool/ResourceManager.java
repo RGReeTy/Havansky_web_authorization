@@ -19,7 +19,7 @@ public class ResourceManager {
         return instance;
     }
 
-    public String getValue(String key) {
+    String getValue(String key) {
         return bundle.getString(key);
     }
 }

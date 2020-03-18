@@ -8,5 +8,5 @@ public interface UserService {
 
     String registration(User user) throws ServiceException;
 
-    boolean checkLogin(User loginBean);
+    boolean checkLogin(User loginBean) throws ServiceException;
 }

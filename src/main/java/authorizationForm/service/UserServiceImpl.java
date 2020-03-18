@@ -16,10 +16,8 @@ public class UserServiceImpl implements UserService {
         try {
             return dao.authorizeLogin(user);
         } catch (DAOException e) {
-            //throw new ServiceException("Exception during sing in!");
-            e.printStackTrace();
+            throw new ServiceException("Exception during sing in!");
         }
-        return "Sign In error! Sorry!";
     }
 
     @Override
@@ -35,13 +33,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkLogin(User loginBean) {
+    public boolean checkLogin(User loginBean) throws ServiceException {
         String authorize = "WrongLoginMsg";
-        try {
             authorize = singIn(loginBean);
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
         return authorize.equals("SUCCESS LOGIN");
     }
 }

@@ -24,7 +24,6 @@ public class ConnectionPool {
         this.password = resourceManager.getValue(DBConnectionParameter.PASSWORD.getKey());
         this.url = resourceManager.getValue(DBConnectionParameter.URL.getKey());
         this.poolSize = Integer.parseInt(resourceManager.getValue(DBConnectionParameter.POOL_SIZE.getKey()));
-
     }
 
     public static ConnectionPool getInstance() {

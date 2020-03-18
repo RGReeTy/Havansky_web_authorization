@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Controller extends HttpServlet  {
-    //объект, содержащий список возможных команд
-    RequestHelper requestHelper = RequestHelper.getInstance();
+
+    private RequestHelper requestHelper = RequestHelper.getInstance();
 
     public Controller() {
         super();
@@ -27,28 +27,29 @@ public class Controller extends HttpServlet  {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
         String page = null;
         try {
-        //определение команды, пришедшей из JSP
+
             Command command = requestHelper.getCommand(request);
-        /*вызов реализованного метода execute() интерфейса Command и передача
-           параметров классу-обработчику конкретной команды*/
+
             page = command.execute(request, response);
-        // метод возвращает страницу ответа
+
         } catch (ServletException e) {
-            e.printStackTrace();
-//генерация сообщения об ошибке
             request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
-//вызов JSP-страницы c cообщением об ошибке
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
         } catch (IOException e) {
-            e.printStackTrace();
             request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
         }
-//вызов страницы ответа на запрос
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-        dispatcher.forward(request, response);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
+        } catch (IOException e) {
+            request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
+        }
     }
 }

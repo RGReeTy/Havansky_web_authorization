@@ -42,7 +42,8 @@ public class RegisterCommand implements Command {
             try {
                 registerValidate = service.registration(user);
             } catch (ServiceException e) {
-                e.printStackTrace();
+                request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
+                page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
             }
 
             if (registerValidate.equals("SUCCESS REGISTER")) {

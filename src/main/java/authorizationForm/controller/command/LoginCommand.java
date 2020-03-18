@@ -3,6 +3,7 @@ package main.java.authorizationForm.controller.command;
 import main.java.authorizationForm.bean.User;
 import main.java.authorizationForm.controller.command.manager.ConfigurationManager;
 import main.java.authorizationForm.controller.command.manager.MessageManager;
+import main.java.authorizationForm.service.ServiceException;
 import main.java.authorizationForm.service.ServiceFactory;
 import main.java.authorizationForm.service.UserService;
 
@@ -22,32 +23,31 @@ public class LoginCommand implements Command {
         response.setContentType("text/html");
 
         String page = null;
-//извлечение из запроса логина и пароля
+
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String pass = request.getParameter(PARAM_NAME_PASSWORD);
 
         User loginBean = new User();
-        loginBean.setUsername(login); //set username through loginBean object
-        loginBean.setPassword(pass); //set password through loginBean object
+        loginBean.setUsername(login);
+        loginBean.setPassword(pass);
         UserService service = ServiceFactory.getInstance().getUserDAO();
 
-//проверка логина и пароля
+
         if (request.getParameter("btn_login") != null) {
-            if (service.checkLogin(loginBean)) {
-//                HttpSession session = request.getSession(); //session is created
-//                session.setAttribute("login", loginBean.getUsername()); //session name is "login" and  store username in "getUsername()" get through loginBean object
-//                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp"); //redirect to welcome.jsp page
-//                rd.forward(request, response);
-                request.setAttribute("user", login);
-//определение пути к main.jsp
-                page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.MAIN_PAGE_PATH);
-            } else {
+            try {
+                if (service.checkLogin(loginBean)) {
+                    request.setAttribute("user", login);
+
+                    page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.MAIN_PAGE_PATH);
+                } else {
+                    request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.LOGIN_ERROR_MESSAGE));
+                    page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
+                }
+            } catch (ServiceException e) {
                 request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.LOGIN_ERROR_MESSAGE));
                 page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
             }
         }
         return page;
     }
-
-
 }
