@@ -46,22 +46,6 @@
 
     </form>
 
-    <h3 style="color:green">
-        <%
-            if (request.getAttribute("RegisterSuccessMsg") != null) {
-                out.println(request.getAttribute("RegisterSuccessMsg")); //get register success message from RegisterController
-            }
-        %>
-    </h3>
-
-    <h3 style="color:red">
-        <%
-            if (request.getAttribute("WrongLoginMsg") != null) {
-                out.println(request.getAttribute("WrongLoginMsg")); //get login error message from LoginController
-            }
-        %>
-    </h3>
-
 </div>
 </body>
 </html>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Controller extends HttpServlet implements Servlet {
+public class Controller extends HttpServlet  {
     //объект, содержащий список возможных команд
     RequestHelper requestHelper = RequestHelper.getInstance();
 
