@@ -35,7 +35,7 @@
 
     <h2>Login</h2>
 
-    <form method="post" action="Controller" name="LoginForm" onsubmit="return validate();">
+    <form method="post" action="controller" name="LoginForm" onsubmit="return validate();">
         <input type="hidden" name="command" value="login"/>
         Username :<input type="text" name="login" value="">
         Password :<input type="password" name="password" value="">

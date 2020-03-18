@@ -6,11 +6,9 @@ import main.java.authorizationForm.controller.command.manager.MessageManager;
 import main.java.authorizationForm.service.ServiceFactory;
 import main.java.authorizationForm.service.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginCommand implements Command {
@@ -36,11 +34,10 @@ public class LoginCommand implements Command {
 //проверка логина и пароля
         if (request.getParameter("btn_login") != null) {
             if (service.checkLogin(loginBean)) {
-
-                HttpSession session = request.getSession(); //session is created
-                session.setAttribute("login", loginBean.getUsername()); //session name is "login" and  store username in "getUsername()" get through loginBean object
-                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp"); //redirect to welcome.jsp page
-                rd.forward(request, response);
+//                HttpSession session = request.getSession(); //session is created
+//                session.setAttribute("login", loginBean.getUsername()); //session name is "login" and  store username in "getUsername()" get through loginBean object
+//                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp"); //redirect to welcome.jsp page
+//                rd.forward(request, response);
                 request.setAttribute("user", login);
 //определение пути к main.jsp
                 page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.MAIN_PAGE_PATH);

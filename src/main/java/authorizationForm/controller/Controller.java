@@ -5,13 +5,14 @@ import main.java.authorizationForm.controller.command.manager.ConfigurationManag
 import main.java.authorizationForm.controller.command.manager.MessageManager;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Controller extends HttpServlet implements javax.servlet.Servlet {
+public class Controller extends HttpServlet implements Servlet {
     //объект, содержащий список возможных команд
     RequestHelper requestHelper = RequestHelper.getInstance();
 
@@ -30,12 +31,12 @@ public class Controller extends HttpServlet implements javax.servlet.Servlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         try {
-//определение команды, пришедшей из JSP
+        //определение команды, пришедшей из JSP
             Command command = requestHelper.getCommand(request);
-/*вызов реализованного метода execute() интерфейса Command и передача
-параметров классу-обработчику конкретной команды*/
+        /*вызов реализованного метода execute() интерфейса Command и передача
+           параметров классу-обработчику конкретной команды*/
             page = command.execute(request, response);
-// метод возвращает страницу ответа
+        // метод возвращает страницу ответа
         } catch (ServletException e) {
             e.printStackTrace();
 //генерация сообщения об ошибке

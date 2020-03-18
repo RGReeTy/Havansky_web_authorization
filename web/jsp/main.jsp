@@ -3,10 +3,26 @@
 
 <html>
 <head><title>Welcome</title></head>
-<body><h3>Welcome</h3>
-<hr/>
-<c:out value="${user}, Hello!"/>
-<hr/>
-<a href="controller">Return to login page</a>
+<div style="text-align: center;">
+    <body><h3>Welcome</h3>
+    <hr/>
+    <c:out value="${user}, Hello!"/>
+    <hr/>
+    <!--<a href="controller">Return to login page</a>-->
+
+<%--    <h2>--%>
+<%--        <%--%>
+<%--            if (session.getAttribute("login") == null || session.getAttribute("login") == "") {//check if condition for unauthorize user not direct access welcome.jsp page--%>
+<%--                response.sendRedirect("index.jsp");--%>
+<%--            }--%>
+<%--        %>--%>
+<%--        Welcome, <%=session.getAttribute("login")%>--%>
+<%--    </h2>--%>
+
+
+    <h3>
+        <a href="logout.jsp">Logout</a>
+    </h3>
+</div>
 </body>
 </html>
