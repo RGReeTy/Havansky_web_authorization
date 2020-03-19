@@ -9,6 +9,7 @@ import main.java.authorizationForm.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class RegisterCommand implements Command {
@@ -36,6 +37,8 @@ public class RegisterCommand implements Command {
         user.setUsername(username);
         user.setPassword(password);
 
+        HttpSession session = request.getSession();
+
         UserService service = ServiceFactory.getInstance().getUserDAO();
 
             String registerValidate = "Register Error";
@@ -48,8 +51,10 @@ public class RegisterCommand implements Command {
 
             if (registerValidate.equals("SUCCESS REGISTER")) {
                 request.setAttribute("user", username);
+                session.setAttribute("isRegistered", registerValidate);
                 page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.INDEX_PAGE_PATH);
             } else {
+                session.setAttribute("isRegistered", registerValidate);
                 request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.REGISTER_ERROR_MESSAGE));
                 page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
             }

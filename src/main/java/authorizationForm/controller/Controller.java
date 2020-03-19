@@ -13,6 +13,8 @@ import java.io.IOException;
 
 public class Controller extends HttpServlet  {
 
+    private String ATTRIBUT_ERROR_MESSAGE = "errorMessage";
+
     private RequestHelper requestHelper = RequestHelper.getInstance();
 
     public Controller() {
@@ -36,10 +38,10 @@ public class Controller extends HttpServlet  {
             page = command.execute(request, response);
 
         } catch (ServletException e) {
-            request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
+            request.setAttribute(ATTRIBUT_ERROR_MESSAGE, MessageManager.getInstance().getProperty(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
         } catch (IOException e) {
-            request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
+            request.setAttribute(ATTRIBUT_ERROR_MESSAGE, MessageManager.getInstance().getProperty(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH);
         }
 
@@ -47,9 +49,9 @@ public class Controller extends HttpServlet  {
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
-            request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
+            request.setAttribute(ATTRIBUT_ERROR_MESSAGE, MessageManager.getInstance().getProperty(MessageManager.SERVLET_EXCEPTION_ERROR_MESSAGE));
         } catch (IOException e) {
-            request.setAttribute("errorMessage", MessageManager.getInstance().getProperty(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
+            request.setAttribute(ATTRIBUT_ERROR_MESSAGE, MessageManager.getInstance().getProperty(MessageManager.IO_EXCEPTION_ERROR_MESSAGE));
         }
     }
 }

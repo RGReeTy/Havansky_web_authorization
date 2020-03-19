@@ -13,6 +13,14 @@
     <h3>
         <a href="logout.jsp" onclick="signout">Logout</a>
     </h3>
+    <form method="get" action="controller" name="signOutForm">
+        <input type="hidden" name="command" value="signout"/>
+        <input type="submit" name="btn_login" value="Sign Out">
+    </form>
+
+
+
+
 </div>
 </body>
 </html>
