@@ -3,6 +3,9 @@ package main.java.authorizationForm.dao;
 import main.java.authorizationForm.bean.User;
 import main.java.authorizationForm.dao.connectionPool.ConnectionPool;
 import main.java.authorizationForm.dao.connectionPool.ConnectionPoolException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO {
+
+    private static Logger logger = LogManager.getLogger();
+    private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private final static String LOGIN = "SELECT * FROM user_test.user WHERE username = ? AND password = ?";
     private final static String INSERT = "INSERT INTO user_test.user(username,password, firstname,lastname) VALUES(?,?,?,?)";
@@ -27,10 +33,7 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            pool = ConnectionPool.getInstance();
-            pool.poolInitialization();
-
-            con = pool.takeConnection();
+            con = connectionPool.takeConnection();
             pstmt = con.prepareStatement(INSERT);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -45,14 +48,12 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             throw new DAOException("Exception during inserting operation", e);
         } finally {
-            if (pstmt != null) {
-                closeStatement(pstmt);
-            }
             if (con != null) {
-                closeConnection(con);
-            }
-            if (pool != null) {
-                closePool(pool);
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    logger.log(Level.ERROR, "SQLException in close connection save");
+                }
             }
         }
 
@@ -71,10 +72,7 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            pool = ConnectionPool.getInstance();
-            pool.poolInitialization();
-
-            con = pool.takeConnection();
+            con = connectionPool.takeConnection();
             pstmt = con.prepareStatement(LOGIN);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -93,38 +91,14 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             throw new DAOException("Exception during sign in operation!");
         } finally {
-            if (pstmt != null)
-                closeStatement(pstmt);
-            if (con != null)
-                closeConnection(con);
-            if (pool != null)
-                closePool(pool);
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    logger.log(Level.ERROR, "SQLException in return connection", e);
+                }
+            }
         }
         return "WRONG USERNAME AND PASSWORD";
-    }
-
-
-    private static void closeStatement(PreparedStatement ps) throws DAOException {
-        try {
-            ps.close();
-        } catch (SQLException e) {
-            throw new DAOException("Exception during statement closing");
-        }
-    }
-
-    private static void closeConnection(Connection connection) throws DAOException {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new DAOException("Exception during connection closing");
-        }
-    }
-
-    private static void closePool(ConnectionPool pool) throws DAOException {
-        try {
-            pool.closeAllConnections();
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("Exception during pool closing");
-        }
     }
 }
