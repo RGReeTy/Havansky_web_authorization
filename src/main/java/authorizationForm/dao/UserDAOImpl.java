@@ -48,6 +48,7 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             throw new DAOException("Exception during inserting operation", e);
         } finally {
+
             if (con != null) {
                 try {
                     con.close();
