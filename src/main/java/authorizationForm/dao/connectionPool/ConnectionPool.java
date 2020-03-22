@@ -22,6 +22,7 @@ public class ConnectionPool {
     private int poolSize;
     private BlockingQueue<Connection> availableConnection;
     private BlockingQueue<Connection> usedConnection;
+
     private static Logger logger = LogManager.getLogger();
 
     private ConnectionPool() {
