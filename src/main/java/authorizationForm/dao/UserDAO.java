@@ -1,6 +1,9 @@
 package main.java.authorizationForm.dao;
 
+import main.java.authorizationForm.bean.Order;
 import main.java.authorizationForm.bean.User;
+
+import java.util.Set;
 
 public interface UserDAO {
 
@@ -8,5 +11,5 @@ public interface UserDAO {
 
     String authorizeLogin(User loginUser) throws DAOException;
 
-    //public ArrayList<String> getUserInfo(String info) throws DAOException;
+    Set<Order> getUserInfo(String info) throws DAOException;
 }

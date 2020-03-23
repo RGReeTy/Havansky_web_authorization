@@ -11,11 +11,26 @@
 
     <div>
         <form method="get" action="controller" name="signOutForm">
-            <input type="hidden" name="command" value="signout"/>
-            <input type="submit" name="btn_login" value="Sign Out">
+            <input type="hidden" name="command" value="getOrderInfoCommand"/>
+            <input type="submit" name="btn_getInfo" value="Get order's info">
         </form>
 
     </div>
+
+    <c:if test="${not empty orders}">
+    <h3>${user} orders:</h3>
+    <ul>
+    <c:forEach items="${orders}" var="order">
+        <li>
+            ${order}
+        </li>
+    </c:forEach>
+    </c:if>
+
+    </ul>
+
+
+
 
     <form method="get" action="controller" name="signOutForm">
         <input type="hidden" name="command" value="signout"/>
