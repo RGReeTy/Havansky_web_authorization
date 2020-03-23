@@ -93,7 +93,7 @@ public class ConnectionPool {
         try {
             con.close();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Connection isn't return to thepool. ");
+            logger.log(Level.ERROR, "Connection isn't return to the pool. ");
         }
         try {
             rs.close();
