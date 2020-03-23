@@ -10,6 +10,7 @@ import main.java.authorizationForm.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginCommand implements Command {
@@ -37,6 +38,8 @@ public class LoginCommand implements Command {
             try {
                 if (service.checkLogin(loginBean)) {
                     request.setAttribute("user", login);
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("login", login);
 
                     page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.MAIN_PAGE_PATH);
                 } else {
