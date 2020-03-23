@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO {
 
-    private static Logger logger = LogManager.getLogger();
+    //private static Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private final static String LOGIN = "SELECT * FROM user_test.user WHERE username = ? AND password = ?";
@@ -53,7 +53,7 @@ public class UserDAOImpl implements UserDAO {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    logger.log(Level.ERROR, "SQLException in close connection save");
+                    //logger.log(Level.ERROR, "SQLException in close connection save");
                 }
             }
         }
@@ -96,7 +96,7 @@ public class UserDAOImpl implements UserDAO {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    logger.log(Level.ERROR, "SQLException in return connection", e);
+                    //logger.log(Level.ERROR, "SQLException in return connection", e);
                 }
             }
         }

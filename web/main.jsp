@@ -9,10 +9,14 @@
     <c:out value="${user}, Hello!"/>
     <hr/>
 
+    <div>
+        <form method="get" action="controller" name="signOutForm">
+            <input type="hidden" name="command" value="signout"/>
+            <input type="submit" name="btn_login" value="Sign Out">
+        </form>
 
-    <h3>
-        <a href="logout.jsp" onclick="signout">Logout</a>
-    </h3>
+    </div>
+
     <form method="get" action="controller" name="signOutForm">
         <input type="hidden" name="command" value="signout"/>
         <input type="submit" name="btn_login" value="Sign Out">
