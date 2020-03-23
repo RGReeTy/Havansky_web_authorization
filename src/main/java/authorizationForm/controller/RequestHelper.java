@@ -15,7 +15,7 @@ public class RequestHelper {
         commands.put("login", new LoginCommand());
         commands.put("registration", new RegisterCommand());
         commands.put("signout", new SignOut());
-        commands.put("getOrderInfo", new getOrderInfoCommand());
+        commands.put("getOrderInfoCommand", new getOrderInfoCommand());
     }
 
     Command getCommand(HttpServletRequest request) {

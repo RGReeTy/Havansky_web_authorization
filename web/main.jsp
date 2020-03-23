@@ -20,24 +20,20 @@
     <c:if test="${not empty orders}">
     <h3>${user} orders:</h3>
     <ul>
-    <c:forEach items="${orders}" var="order">
-        <li>
-            ${order}
-        </li>
-    </c:forEach>
-    </c:if>
+        <c:forEach items="${sessionScope.orders}" var="order">
+            <li>
+                <c:out value="${order}"/>
+            </li>
+        </c:forEach>
+        </c:if>
 
     </ul>
-
-
 
 
     <form method="get" action="controller" name="signOutForm">
         <input type="hidden" name="command" value="signout"/>
         <input type="submit" name="btn_login" value="Sign Out">
     </form>
-
-
 
 
 </div>
