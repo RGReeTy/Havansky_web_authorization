@@ -10,12 +10,14 @@
     <hr/>
 
     <div>
-        <form method="get" action="controller" name="signOutForm">
+        <form method="get" action="controller" name="getOrderInfoCommand">
             <input type="hidden" name="command" value="getOrderInfoCommand"/>
             <input type="submit" name="btn_getInfo" value="Get order's info">
         </form>
 
     </div>
+
+    <c:out value="${sessionScope.values()}"></c:out>
 
     <c:if test="${not empty orders}">
     <h3>${user} orders:</h3>
