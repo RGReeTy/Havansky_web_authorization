@@ -4,6 +4,7 @@
 <html>
 <head><title>Welcome</title></head>
 <div style="text-align: center;">
+
     <body><h3>Welcome</h3>
     <hr/>
     <c:out value="${user}, Hello!"/>
