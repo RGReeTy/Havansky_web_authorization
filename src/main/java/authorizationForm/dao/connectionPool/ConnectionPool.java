@@ -85,7 +85,6 @@ public class ConnectionPool {
         } catch (InterruptedException e) {
             throw new ConnectionPoolException("Exception during taking the connection!");
         }
-
         return connection;
     }
 
