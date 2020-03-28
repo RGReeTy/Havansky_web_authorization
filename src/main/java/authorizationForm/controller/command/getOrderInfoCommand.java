@@ -34,6 +34,7 @@ public class getOrderInfoCommand implements Command {
             Set<Order> orders = new HashSet<>();
             orders = service.getOrderInfo(login);
             if (!orders.isEmpty()) {
+                request.setAttribute("orders", orders);
                 session.setAttribute("orders", orders);
 
                 page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.MAIN_PAGE_PATH);

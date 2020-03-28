@@ -19,9 +19,10 @@ public class UserDAOImpl implements UserDAO {
 
     private final static String LOGIN = "SELECT * FROM user_test.user WHERE username = ? AND password = ?";
     private final static String INSERT = "INSERT INTO user_test.user(username,password, firstname,lastname) VALUES(?,?,?,?)";
-    private final static String GET_INFO = "SELECT user_test.orders.id, user_test.orders.CreatedAt, user_test.orders.Count" +
-            " FROM user_test.orders INNER JOIN orders ON user_test.user.username=user_test.orders.Customer_nickname " +
-            "WHERE user_test.orders.Customer_nickname=?";
+    private final static String  GET_INFO ="SELECT user_test.orders.Id, CreatedAt, Count FROM user_test.orders WHERE Customer_nickname = ? ";
+//    private final static String GET_INFO = "SELECT user_test.orders.id, user_test.orders.CreatedAt, user_test.orders.Count" +
+//            " FROM user_test.orders INNER JOIN orders ON user_test.user.username=user_test.orders.Customer_nickname " +
+//            "WHERE user_test.orders.Customer_nickname=?";
 
     @Override
     public String addNewUser(User user) throws DAOException {
