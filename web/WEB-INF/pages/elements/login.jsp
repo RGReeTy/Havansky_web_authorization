@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -8,28 +7,41 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
+    <script language="javascript">
+        function validate() {
+            var username = document.LoginForm.text; //get form name "LoginForm" and textbox name "txt_username" store in variable username
+            var password = document.LoginForm.password; //get form name "LoginForm" and textbox name "txt_password" store in variable password
+
+            if (username.value == null || username.value == "") {//check username textbox not blank
+                window.alert("please enter username !"); //alert message
+                username.style.background = '#f08080'; //set textbox color
+                username.focus();
+                return false;
+            }
+            if (password.value == null || password.value == "") {//check password textbox not blank
+                window.alert("please enter password !"); //alert message
+                password.style.background = '#f08080'; //set textbox color
+                password.focus();
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 <c:choose>
     <c:when test="${empty sessionScope.user}">
         <div id="innerlogin">
-            <form method="POST" action="controller">
-                <div>
-                    <input name="action" type="hidden" value="login"/>
-                </div>
-                <div>
-                    <input class="input" type="text" name="login"
-                           value="<fmt:message key="field.login" />"/>
-                </div>
-                <div>
-                    <input class="input" type="password" name="password"
-                           value="********"/>
-                </div>
-                <div>
-                    <input class="button" type="submit"
-                           value="<fmt:message key="menu.button.login" />"/>
-                </div>
+
+            <form method="post" action="controller" name="LoginForm" onsubmit="return validate();">
+                <input type="hidden" name="command" value="login"/>
+                Username :<input type="text" name="login" value="">
+                Password :<input type="password" name="password" value="">
+
+                <input type="submit" name="btn_login" value="Login">
+
+                <h3>Your don't have an account? <a href="register.jsp">Register</a></h3>
             </form>
+
             <div id="register">
                 <a href="controller?action=go_to_page&page=path.page.register">
                     <fmt:message key="menu.button.register"/></a>

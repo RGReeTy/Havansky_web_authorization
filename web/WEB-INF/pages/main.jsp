@@ -22,24 +22,24 @@
 </head>
 <body>
 <div id="header">
-    <%@include file="/pages/elements/header.jsp" %>
+    <%@include file="elements/header.jsp" %>
 </div>
 <div id="main">
     <div id="left-content">
         <div id="login">
-            <%@include file="/pages/elements/login.jsp" %>
+            <%@include file="elements/login.jsp" %>
         </div>
         <div id="menu">
-            <%@include file="/pages/elements/menu.jsp" %>
+            <%@include file="elements/menu.jsp" %>
         </div>
     </div>
     <div id="right-content">
         <div id="content">
-            <%@include file="/pages/elements/main_content.jsp" %>
+            <%@include file="elements/main_content.jsp" %>
         </div>
     </div>
     <div style="clear: left"></div>
-    <%@include file="/pages/elements/footer_content.jsp" %>
+    <%@include file="elements/footer_content.jsp" %>
 </div>
 </body>
 </html>
