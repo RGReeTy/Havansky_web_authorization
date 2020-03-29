@@ -9,27 +9,26 @@ import java.io.IOException;
         initParams = {@WebInitParam(name = "encoding", value = "UTF-8", description = "Encoding Param")})
 public class CharsetFilter implements Filter {
 
-    private String code;
+    private String defaultEncoding = "utf-8";
+    private static final String ENCODING = "encoding";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        code = filterConfig.getInitParameter("encoding");
+        String encoding = filterConfig.getInitParameter(ENCODING);
+        if (encoding != null) {
+            defaultEncoding = encoding;
+        }
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        String codeRequest = request.getCharacterEncoding();
-        //setting encoding from filter parameters, if not installed
-        if (code != null && !code.equalsIgnoreCase(codeRequest)) {
-            request.setCharacterEncoding(code);
-            response.setCharacterEncoding(code);
-        }
-        chain.doFilter(request, response);
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        servletRequest.setCharacterEncoding(defaultEncoding);
+        servletResponse.setCharacterEncoding(defaultEncoding);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-        code = null;
+
     }
 }
