@@ -1,9 +1,11 @@
 package main.java.authorizationForm.bean;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Order {
+public class Order implements Serializable {
 
+    private static final long serialVersionUID = -7483740798840490264L;
     private int id;
     private String username;
     private String createdAt;
