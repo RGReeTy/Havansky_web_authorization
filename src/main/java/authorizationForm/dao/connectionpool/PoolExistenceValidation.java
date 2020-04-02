@@ -1,4 +1,4 @@
-package main.java.authorizationForm.dao.connectionPool;
+package main.java.authorizationForm.dao.connectionpool;
 
 import java.sql.Connection;
 import java.util.concurrent.BlockingQueue;

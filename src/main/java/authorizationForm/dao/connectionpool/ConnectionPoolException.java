@@ -1,4 +1,4 @@
-package main.java.authorizationForm.dao.connectionPool;
+package main.java.authorizationForm.dao.connectionpool;
 
 public class ConnectionPoolException extends Exception {
 

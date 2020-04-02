@@ -1,4 +1,4 @@
-package main.java.authorizationForm.dao.connectionPool;
+package main.java.authorizationForm.dao.connectionpool;
 
 import main.java.authorizationForm.dao.DAOException;
 

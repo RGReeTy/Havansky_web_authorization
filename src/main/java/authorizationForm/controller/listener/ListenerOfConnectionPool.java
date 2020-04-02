@@ -1,7 +1,7 @@
 package main.java.authorizationForm.controller.listener;
 
 import main.java.authorizationForm.dao.DAOException;
-import main.java.authorizationForm.dao.connectionPool.ConnectionPoolFactory;
+import main.java.authorizationForm.dao.connectionpool.ConnectionPoolFactory;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,8 +1,4 @@
-package main.java.authorizationForm.dao.connectionPool;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+package main.java.authorizationForm.dao.connectionpool;
 
 import java.sql.*;
 import java.util.Map;

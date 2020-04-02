@@ -2,8 +2,8 @@ package main.java.authorizationForm.dao;
 
 import main.java.authorizationForm.bean.Order;
 import main.java.authorizationForm.bean.User;
-import main.java.authorizationForm.dao.connectionPool.ConnectionPool;
-import main.java.authorizationForm.dao.connectionPool.ConnectionPoolException;
+import main.java.authorizationForm.dao.connectionpool.ConnectionPool;
+import main.java.authorizationForm.dao.connectionpool.ConnectionPoolException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
