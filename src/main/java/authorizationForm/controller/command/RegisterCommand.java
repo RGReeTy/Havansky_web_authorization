@@ -21,9 +21,6 @@ public class RegisterCommand implements Command {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html");
-
         String page = null;
         String username = request.getParameter(PARAM_NAME_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);

@@ -20,9 +20,6 @@ public class getOrderInfoCommand implements Command {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html");
-
         String page = null;
         HttpSession session = request.getSession(true);
 
