@@ -2,6 +2,11 @@ package main.java.authorizationForm.service;
 
 import main.java.authorizationForm.bean.User;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
+
 public class ValidationUserAccount {
 
     private static final String LOGIN_PATTERN = "[a-zA-Z0-9-_]{5,15}$";
@@ -11,7 +16,7 @@ public class ValidationUserAccount {
     private User user;
     private Locale locale;
 
-    public UserValidatorImpl(User user, String locale) {
+    public ValidationUserAccount(User user, String locale) {
         this.user = user;
         if (locale != null) {
             this.locale = new Locale(locale);
@@ -20,15 +25,13 @@ public class ValidationUserAccount {
         }
     }
 
-    @Override
     public Map<String, String> validate() {
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("local/local",locale);
 
         Map<String, String> validationResult = new HashMap<>();
 
-
-        if (user.getLogin() == null || !validateLogin(user.getLogin())) {
+        if (user.getUsername() == null || !validateLogin(user.getUsername())) {
             validationResult.put(RequestParameterName.LOGIN_INVALID, resourceBundle.getString("message.invalid_login"));
         }
 

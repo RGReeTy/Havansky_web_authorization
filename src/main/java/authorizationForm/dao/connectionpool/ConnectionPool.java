@@ -69,12 +69,7 @@ public class ConnectionPool {
 
 
     public Connection takeConnection() throws ConnectionPoolException {
-
-        if (usedConnection == null) {
-            poolInitialization();
-        }
         Connection connection;
-
         try {
             connection = availableConnection.take();
             usedConnection.add(connection);

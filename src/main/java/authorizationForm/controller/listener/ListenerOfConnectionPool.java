@@ -1,7 +1,8 @@
 package main.java.authorizationForm.controller.listener;
 
 import main.java.authorizationForm.dao.DAOException;
-import main.java.authorizationForm.dao.connectionpool.ConnectionPoolFactory;
+import main.java.authorizationForm.dao.connectionpool.ConnectionPool;
+import main.java.authorizationForm.dao.connectionpool.ConnectionPoolException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,14 +20,14 @@ public class ListenerOfConnectionPool implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            ConnectionPoolFactory.getInstance().getMySqlConnectionPoolDAO().init();
-        } catch (DAOException e) {
+            ConnectionPool.getInstance().poolInitialization();
+        } catch (ConnectionPoolException e) {
             logger.log(Level.ERROR, "Connection pool didn't initialize.");
         }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ConnectionPoolFactory.getInstance().getMySqlConnectionPoolDAO().destroy();
+        ConnectionPool.getInstance().dispose();
     }
 }
